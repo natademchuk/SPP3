@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="icon" type="png" sizes="32x32" href="/public/icons/notes32.png">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
@@ -19,18 +20,16 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" rel="stylesheet">
 
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    <script>
-        if (window.history.replaceState) {
-            window.history.replaceState(null, null, window.location.href);
-        }
-    </script>
+    <script src="/public/src/js.cookie.js"></script>
 </head>
 
 <body>
+    <a href="http://localhost:8000/login" class=" snwclr logout ">
+        <span class="glyphicon glyphicon-log-out"></span> Log out
+    </a>
     <div class="Tittle">
         <p>TO DO LIST</p>
     </div>
-
     <div class="Form_Container">
         <form class="form-inline justify-content-center " id="taskForm" name="taskForm" action="" encType="multipart/form-data">
             <input type="text" class="form-control fntsize" id="tskinput" name="task" placeholder="Your task.." required title="Task" autocomplete="off">
@@ -57,8 +56,6 @@
                     <option value="In progress">In progress</option>
                     <option value="Finished">Finished</option>
             </select>
-            <!-- <input type="text" id="myInput" class="form-control fntsize" onkeyup="filterTasksByStatus
-                    ()" placeholder="Search for task's status.." title="Task's status">-->
         </div>
         <table id="tasks_table" class="table  table-bordered fntsize">
             <thead>
@@ -69,7 +66,7 @@
                     <td>File</td>
                 </tr>
             </thead>
-            <!-- <% if(taskAdded) {%>-->
+            <!-- <% if(taskInfo.length!=0) {%>-->
             <tbody>
                 <% for(var i=0; i<taskInfo.length;i++) { %>
                     <tr class="tskinf">
@@ -93,9 +90,13 @@
 
     </div>
 
-
     <script>
         let RowNumToUpd = false;
+
+        // Нажатие на logout 
+        $(".logout").on("click", function() {
+            Cookies.remove('token');
+        });
 
         // Загрузка названия файла в label
         $(".custom-file-input").on("change", function() {
@@ -139,7 +140,25 @@
             }
 
         });
-        // Добавление 
+
+        //get 
+        $.ajax({
+            url: "/",
+            statusCode: {
+                200: function() {
+                    alert("200");
+                },
+                401: function() {
+                    $(document).ready(function() {
+                        url = "http://localhost:8000/login";
+                        $(location).attr("href", url);
+                    });
+                }
+            }
+        });
+
+
+        // Добавление POST
         function AddTask() {
             let formData = new FormData(document.forms.taskForm);
             $.ajax({
@@ -148,6 +167,14 @@
                 processData: false,
                 method: "POST",
                 data: formData,
+                statusCode: {
+                    401: function() {
+                        $(document).ready(function() {
+                            url = "http://localhost:8000/login";
+                            $(location).attr("href", url);
+                        });
+                    }
+                },
                 success: function(res) {
                     let template = CreateTableRow(res);
                     $("table").append(template);
@@ -172,7 +199,7 @@
                      </td>
                     </tr>`;
         }
-        // Изменение 
+        // Изменение PUT
         function UpdateTask(RowNumToUpd) {
             let formData = new FormData(document.forms.taskForm);
             formData.append('tasknum', RowNumToUpd - 1);
@@ -182,6 +209,14 @@
                 processData: false,
                 method: "PUT",
                 data: formData,
+                statusCode: {
+                    401: function() {
+                        $(document).ready(function() {
+                            url = "http://localhost:8000/login";
+                            $(location).attr("href", url);
+                        });
+                    }
+                },
                 success: function(res) {
                     // location.reload();                                                    
                     $("table tr:eq(" + RowNumToUpd + ")").replaceWith(CreateTableRow(res));

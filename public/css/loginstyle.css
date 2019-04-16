@@ -1,0 +1,40 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    position: relative;
+    font-size: 1.7vw!important;
+}
+
+.Login_Container {
+    margin-top: 4em;
+    margin-left: 20em;
+    margin-right: 20em;
+}
+
+.form-login {
+    /*background-color: #EDEDED;*/
+    background-color: rgba(121, 85, 72, 0.3);
+    padding: 1em;
+    padding-left: 3em;
+    padding-right: 3em;
+    border-radius: 15px;
+    border-color: #d2d2d2;
+    border-width: 5px;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+
+h4 {
+    padding-bottom: 10px;
+    text-align: center;
+    font-size: 1.3em;
+    font-style: normal;
+    font-family: 'Pattaya';
+    color: snow;
+}
+
+.wrapper {
+    text-align: center;
+}

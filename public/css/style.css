@@ -12,6 +12,14 @@ body {
     background-image: linear-gradient(to top left, rgb(108, 137, 209), rgb(250, 137, 137));
 }
 
+.logout {
+    position: absolute;
+    top: 1em;
+    right: 1em;
+    font-family: 'Pattaya';
+    font-style: normal!important;
+}
+
 div.Tittle {
     margin-top: 0.1em;
     text-align-last: center;

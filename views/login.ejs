@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>LOGIN TODOLIST</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="icon" type="png" sizes="32x32" href="/public/icons/notes32.png">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+
+    <link rel="stylesheet" type="text/css" media="screen" href="public/css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Knewave" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Pattaya" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" rel="stylesheet">
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <link rel="stylesheet" type="text/css" media="screen" href="public/css/loginstyle.css">
+</head>
+
+<body>
+    <div class="Tittle">
+        <p>TO DO LIST</p>
+    </div>
+    <div class="Login_Container">
+        <form class="form-login" name="loginForm" action="/login" encType="multipart/form-data">
+            <h4 class="header">Welcome back !</h4>
+            <input type="text" name="uName" id="userName" class="form-control fntsize" placeholder="Username" required title="Username" autocomplete="off" />
+            </br>
+            <input type="password" name="uPassword" id="userPassword" class="form-control fntsize" placeholder="Password" required title="Password" autocomplete="off" />
+            </br>
+            <div class="wrapper">
+                <input type="submit" value="Login" id=sbmt class="btn btnclrd fntsize" title="Login">
+            </div>
+        </form>
+    </div>
+
+    <script>
+        $("form").submit(function(e) {
+            e.preventDefault();
+
+            Login();
+
+        });
+
+        function Login() {
+            let formData = new FormData(document.forms.loginForm);
+            $.ajax({
+                url: "/login",
+                contentType: false,
+                processData: false,
+                method: "POST",
+                data: formData,
+                statusCode: {
+                    200: function() {
+                        $(document).ready(function() {
+                            url = "http://localhost:8000";
+                            $(location).attr("href", url);
+                        });
+
+                    }
+                }
+            });
+        }
+    </script>
+</body>
