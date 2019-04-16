@@ -20,6 +20,7 @@ let taskInfo = [];
 let userInfo = { userName: "12", userPassword: "12" };
 let SECRET;
 
+
 let verifyToken = function(req, res, next) {
     const token = req.cookies.token;
     jwt.verify(token, SECRET, function(err, decoded) {
@@ -38,7 +39,7 @@ app.get('/login', function(req, res) { //console.log('req.files >>>', req.files)
     taskInfo = [];
     res.status(200);
     res.render("login");
-    console.log('get success');
+    console.log('get /login success');
 });
 
 app.post('/login', urlencodedParser, function(req, res) { //console.log('req.files >>>', req.files);     // console.log(req.body);
@@ -50,16 +51,13 @@ app.post('/login', urlencodedParser, function(req, res) { //console.log('req.fil
     res.cookie("token", token);
     res.sendStatus(200);
 
-    console.log('post success');
-    /*
-     */
+    console.log('post /login success');
 });
 
 app.get('/', verifyToken, function(req, res) {
     // res.status(200);
     res.render("index", { taskInfo });
-    //}
-    console.log('get success');
+    console.log('get / success');
 });
 
 app.post('/', verifyToken, urlencodedParser, function(req, res) { //console.log('req.files >>>', req.files);     // console.log(req.body);
@@ -73,7 +71,7 @@ app.post('/', verifyToken, urlencodedParser, function(req, res) { //console.log(
     taskInfo.push(temptask);
     //res.status(200);
     res.json(temptask);
-    console.log('post success');
+    console.log('post / success');
 });
 
 app.put('/', verifyToken, urlencodedParser, function(req, res) { //console.log('req.files >>>', req.files); 
@@ -87,7 +85,7 @@ app.put('/', verifyToken, urlencodedParser, function(req, res) { //console.log('
     taskInfo.splice(req.body.tasknum, 1, temptask);
     //res.status(200);
     res.json(temptask);
-    console.log('put success');
+    console.log('put / success');
 
 });
 
