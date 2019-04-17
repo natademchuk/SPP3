@@ -67,21 +67,21 @@
                         <td>File</td>
                     </tr>
                 </thead>
-                <!-- <% if(taskInfo.length!=0) {%>-->
+                <!-- <% if(utasks.length!=0) {%>-->
                 <tbody>
-                    <% for(var i=0; i<taskInfo.length;i++) { %>
+                    <% for(var i=0; i<utasks.length;i++) { %>
                         <tr class="tskinf">
                             <td class="tskvalue">
-                                <%=taskInfo[i].task%>
+                                <%=utasks[i].task%>
                             </td>
                             <td class="sttsvalue">
-                                <%=taskInfo[i].status%>
+                                <%=utasks[i].status%>
                             </td>
                             <td class="dtvalue">
-                                <%=taskInfo[i].efdate %>
+                                <%=utasks[i].efdate %>
                             </td>
                             <td class="flvalue">
-                                <a class="snwclr" href=<%=taskInfo[i].filepath %>> <%=taskInfo[i].filename %></a>
+                                <a class="snwclr" href=<%=utasks[i].filepath %>> <%=utasks[i].filename %></a>
                             </td>
                         </tr>
                         <% } %>

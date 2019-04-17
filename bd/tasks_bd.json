@@ -1,0 +1,33 @@
+[
+  {
+    "username": "natasha",
+    "utasks": [
+      {
+        "task": "12344",
+        "status": "Something to start",
+        "efdate": "2019-04-17",
+        "filename": "_bownIbUXiY.jpg",
+        "filepath": "/public/downloadfiles/_bownIbUXiY.jpg"
+      }
+    ]
+  },
+  {
+    "username": "natasha2",
+    "utasks": [
+      {
+        "task": "STiAOS",
+        "status": "Something to start",
+        "efdate": "2019-04-17",
+        "filename": "_bownIbUXiY.jpg",
+        "filepath": "/public/downloadfiles/_bownIbUXiY.jpg"
+      },
+      {
+        "task": "STiaos",
+        "status": "Something to start",
+        "efdate": "2019-04-17",
+        "filename": "hands_load.jpg",
+        "filepath": "/public/downloadfiles/hands_load.jpg"
+      }
+    ]
+  }
+]
