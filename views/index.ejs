@@ -24,70 +24,72 @@
 </head>
 
 <body>
-    <a href="http://localhost:8000/login" class=" snwclr logout ">
-        <span class="glyphicon glyphicon-log-out"></span> Log out
-    </a>
-    <div class="Tittle">
-        <p>TO DO LIST</p>
-    </div>
-    <div class="Form_Container">
-        <form class="form-inline justify-content-center " id="taskForm" name="taskForm" action="" encType="multipart/form-data">
-            <input type="text" class="form-control fntsize" id="tskinput" name="task" placeholder="Your task.." required title="Task" autocomplete="off">
-            <select name="status" class="custom-select fntsize" id="sttsselect" required title="Task's status">
+    <div class="invsbl">
+        <a href="http://localhost:8000/login" class=" snwclr logout ">
+            <span class="glyphicon glyphicon-log-out"></span> Log out
+        </a>
+        <div class="Tittle">
+            <p>TO DO LIST</p>
+        </div>
+        <div class="Form_Container">
+            <form class="form-inline justify-content-center " id="taskForm" name="taskForm" action="" encType="multipart/form-data">
+                <input type="text" class="form-control fntsize" id="tskinput" name="task" placeholder="Your task.." required title="Task" autocomplete="off">
+                <select name="status" class="custom-select fntsize" id="sttsselect" required title="Task's status">
                     <option value="Something to start">Something to start</option>
                     <option value="In progress">In progress</option>
                     <option value="Finished">Finished</option>
             </select>
-            <input type="date" name="fdate" id="dtinput" class="form-control fntsize" required title="Expected finish date">
+                <input type="date" name="fdate" id="dtinput" class="form-control fntsize" required title="Expected finish date">
 
-            <div class="custom-file fntsize" title="File">
-                <input type="file" name="myFile" class="custom-file-input" id="customFile" required>
-                <label class="custom-file-label" id="cstmlabel" for="customFile">Choose file</label>
-            </div>
-            <input type="submit" value="Submit" id=sbmt class="btn btnclrd fntsize" title="Submit">
-        </form>
-    </div>
+                <div class="custom-file fntsize" title="File">
+                    <input type="file" name="myFile" class="custom-file-input" id="customFile" required>
+                    <label class="custom-file-label" id="cstmlabel" for="customFile">Choose file</label>
+                </div>
+                <input type="submit" value="Submit" id=sbmt class="btn btnclrd fntsize" title="Submit">
+            </form>
+        </div>
 
-    <div class="Tasks" id="tskdiv">
-        <div class="srchinput">
-            <select name="status" id="srchSelect" class="custom-select fntsize" onchange="filterTasksByStatus
+        <div class="Tasks" id="tskdiv">
+            <div class="srchinput">
+                <select name="status" id="srchSelect" class="custom-select fntsize" onchange="filterTasksByStatus
                 ()" title="Task's status">
                     <option value="Something to start">Something to start</option>
                     <option value="In progress">In progress</option>
                     <option value="Finished">Finished</option>
             </select>
-        </div>
-        <table id="tasks_table" class="table  table-bordered fntsize">
-            <thead>
-                <tr class="header">
-                    <td>Task</td>
-                    <td>Task's status</td>
-                    <td>Expected finish date</td>
-                    <td>File</td>
-                </tr>
-            </thead>
-            <!-- <% if(taskInfo.length!=0) {%>-->
-            <tbody>
-                <% for(var i=0; i<taskInfo.length;i++) { %>
-                    <tr class="tskinf">
-                        <td class="tskvalue">
-                            <%=taskInfo[i].task%>
-                        </td>
-                        <td class="sttsvalue">
-                            <%=taskInfo[i].status%>
-                        </td>
-                        <td class="dtvalue">
-                            <%=taskInfo[i].efdate %>
-                        </td>
-                        <td class="flvalue">
-                            <a class="snwclr" href=<%=taskInfo[i].filepath %>> <%=taskInfo[i].filename %></a>
-                        </td>
+            </div>
+            <table id="tasks_table" class="table  table-bordered fntsize">
+                <thead>
+                    <tr class="header">
+                        <td>Task</td>
+                        <td>Task's status</td>
+                        <td>Expected finish date</td>
+                        <td>File</td>
                     </tr>
-                    <% } %>
-            </tbody>
-        </table>
-        <!--  <%}%>-->
+                </thead>
+                <!-- <% if(taskInfo.length!=0) {%>-->
+                <tbody>
+                    <% for(var i=0; i<taskInfo.length;i++) { %>
+                        <tr class="tskinf">
+                            <td class="tskvalue">
+                                <%=taskInfo[i].task%>
+                            </td>
+                            <td class="sttsvalue">
+                                <%=taskInfo[i].status%>
+                            </td>
+                            <td class="dtvalue">
+                                <%=taskInfo[i].efdate %>
+                            </td>
+                            <td class="flvalue">
+                                <a class="snwclr" href=<%=taskInfo[i].filepath %>> <%=taskInfo[i].filename %></a>
+                            </td>
+                        </tr>
+                        <% } %>
+                </tbody>
+            </table>
+            <!--  <%}%>-->
 
+        </div>
     </div>
 
     <script>
@@ -146,7 +148,8 @@
             url: "/",
             statusCode: {
                 200: function() {
-                    alert("200");
+                    //alert("200");
+                    $('.invsbl').css('visibility', 'visible');
                 },
                 401: function() {
                     $(document).ready(function() {

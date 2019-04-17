@@ -36,5 +36,14 @@ h4 {
 }
 
 .wrapper {
+    margin-top: -0.2em;
     text-align: center;
+}
+
+.smref {
+    margin-top: 0.8em;
+    text-align: center;
+    font-family: 'Open Sans Condensed';
+    font-size: 0.9em;
+    color: snow;
 }

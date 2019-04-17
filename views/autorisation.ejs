@@ -4,7 +4,10 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>LOGIN TODOLIST</title>
+    <title>
+        <%=title %>
+            TODOLIST
+    </title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="icon" type="png" sizes="32x32" href="/public/icons/notes32.png">
@@ -28,30 +31,43 @@
         <p>TO DO LIST</p>
     </div>
     <div class="Login_Container">
-        <form class="form-login" name="loginForm" action="/login" encType="multipart/form-data">
-            <h4 class="header">Welcome back !</h4>
+        <form class="form-login" name="loginForm" encType="multipart/form-data">
+            <h4 class="header">
+                <%=header%>
+            </h4>
             <input type="text" name="uName" id="userName" class="form-control fntsize" placeholder="Username" required title="Username" autocomplete="off" />
             </br>
             <input type="password" name="uPassword" id="userPassword" class="form-control fntsize" placeholder="Password" required title="Password" autocomplete="off" />
             </br>
             <div class="wrapper">
-                <input type="submit" value="Login" id=sbmt class="btn btnclrd fntsize" title="Login">
+                <input type="submit" id=sbmt class="btn btnclrd fntsize" value=<%=action %>>
             </div>
+            <% if(action=="Login"){ %>
+                <div class="smref">
+                    <p>Not registered?<a href="http://localhost:8000/register" class="snwclr"> Create an account</a></p>
+                </div>
+                <%} else{ %>
+                    <div class="smref">
+                        <p>Already registered?<a href="http://localhost:8000/login" class="snwclr"> Login to account</a></p>
+                    </div>
+                    <%} %>
         </form>
     </div>
 
     <script>
         $("form").submit(function(e) {
             e.preventDefault();
-
-            Login();
+            if ($("#sbmt").val() == "Login")
+                Autorisation("/login");
+            else
+                Autorisation("/register");
 
         });
 
-        function Login() {
+        function Autorisation(route) {
             let formData = new FormData(document.forms.loginForm);
             $.ajax({
-                url: "/login",
+                url: route,
                 contentType: false,
                 processData: false,
                 method: "POST",
@@ -62,6 +78,21 @@
                             url = "http://localhost:8000";
                             $(location).attr("href", url);
                         });
+
+                    },
+                    400: function() {
+
+                    },
+                    401: function() {
+                        alert("Your username and password do not match.");
+
+                    },
+                    404: function() {
+                        alert("Your username does not exist.");
+
+                    },
+                    409: function() {
+                        alert("Your username already exists.");
 
                     }
                 }

@@ -12,6 +12,10 @@ body {
     background-image: linear-gradient(to top left, rgb(108, 137, 209), rgb(250, 137, 137));
 }
 
+.invsbl {
+    visibility: hidden;
+}
+
 .logout {
     position: absolute;
     top: 1em;
